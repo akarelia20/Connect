@@ -10,8 +10,8 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
 </head>
 
-<body class="vh-100 bg-image" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg'); height:100vh;
-    height: 100vh">
+<body class="vh-100 bg-image" style="background-image: url('../static/img/nature_background.jpeg');
+height: 100vh">
 
 
     <section>
@@ -73,7 +73,7 @@
                         {% with messages =
                         get_flashed_messages(category_filter=['register']) %} {% if
                         messages %} {% for message in messages %}
-                        <p style="color:rgb(155, 140, 142)">{{ message }}</p>
+                        <p style="color:rgb(100, 95, 96)">{{ message }}</p>
                         {% endfor %} {% endif %} {% endwith %}
                         <h3 class="text-secondary">Register</h3>
 

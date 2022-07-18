@@ -78,6 +78,7 @@ class Post:
                 "id": row['companies.id'],
                 "name": row['name'],
                 "email": row['email'],
+                "website" : row['website'],
                 "password": row['password'],
                 "created_at": row['companies.created_at'],
                 "updated_at": row['companies.updated_at'],
