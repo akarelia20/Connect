@@ -1,6 +1,7 @@
+from poplib import POP3_SSL_PORT
 from flask_app.config.mysqlconnection import MySQLConnection, connectToMySQL
 from flask_app.models import post, company
-from flask import flash
+from flask import flash, session
 import re
 
 
@@ -90,3 +91,5 @@ class Influencer:
                 this_post = post.Post(post_dict)
                 this_user.posts.append(this_post)
             return this_user.posts
+
+    
