@@ -55,20 +55,18 @@
                         </ul>
                     </div>
                 </nav>
-
                 <main class="overflow-auto mt-3">
                     <h3 class="m-3"><u>Your Posts</u> </h3>
-
-
+                    {% if not posts[0].title %}
+                    <p> Oops! you have no posts,<a class="nav-link" href="/new/post"> create </a>one today to boost
+                        up your profile!! </p>
+                    {% else %}
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-
-                        {% if posts|length > 0 %}
                         {% for post in posts %}
-
                         <div class="col">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title"> {{post.title}} </h5>
+                                    <h5 class="card-title"> {{posts[0].title}} </h5>
                                     <div class="d-flex justify-content-around">
                                         <p class="card-text"> Category : {{post.category}} </p>
                                         <div>
@@ -111,15 +109,8 @@
                             </div>
                         </div>
                         {% endfor %}
-
-                        {% else %}
-                        <p> Oops! you have no posts,<a class="nav-link" href="/new/post"> create </a>one today to boost
-                            up
-                            your profile!! </p>
-                        {% endif %}
-
-
                     </div>
+                    {% endif %}
 
 
 

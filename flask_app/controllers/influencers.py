@@ -51,6 +51,7 @@ def dashbord():
         "id"  : session['influencer_id']
     }
     posts = influencer.Influencer.All_posts_from_one_influencer(data)
+    print(posts)
     return render_template("influencer_dashbord.html", logged_in_user = influencer.Influencer.get_influencer_by_id(data), posts = posts)
 
 @app.route("/logout")

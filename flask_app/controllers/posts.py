@@ -64,3 +64,25 @@ def delete_post(id):
     }
     post.Post.delete(data)
     return redirect ('/influencer/dashbord')
+
+@app.route("/post_like/<int:id>")
+def like_post(id):
+    if 'company_id' not in session:
+        return redirect('/')
+    data = {
+        "post_id" : id,
+        "company_id": session['company_id']
+    }
+    post.Post.add_like(data)
+    return redirect("/company/dashbord")
+
+@app.route("/post_dislike/<int:id>")
+def dislike_post(id):
+    if 'company_id' not in session:
+        return redirect('/')
+    data = {
+        "post_id" : id,
+        "company_id": session['company_id']
+    }
+    post.Post.remove_like(data)
+    return redirect("/company/dashbord")
