@@ -30,7 +30,7 @@
                 CONNECT
             </h1>
         </div>
-        <!-- <h3>Welcome, {{ logged_in_user['first_name'] }}!</h3> -->
+
     </header>
 
     <div class="row d-flex justify-content-center align-items-center">
@@ -57,35 +57,55 @@
                 </nav>
                 <main class="overflow-auto mt-3">
                     <h3 class="m-3"><u>Your Posts</u> </h3>
-                    {% if not posts[0].title %}
+                    {% if posts|length == 0 %}
                     <p> Oops! you have no posts,<a class="nav-link" href="/new/post"> create </a>one today to boost
                         up your profile!! </p>
+
                     {% else %}
                     <div class="row row-cols-1 row-cols-md-3 g-4">
                         {% for post in posts %}
                         <div class="col">
-                            <div class="card h-100">
+                            <div class="card">
                                 <div class="card-body">
-                                    <h5 class="card-title"> {{post.title}} </h5>
                                     <div class="d-flex justify-content-around">
-                                        <p class="card-text"> Category : {{post.category}} </p>
                                         <div>
-                                            <a href="/delete_post/{{post.id}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <a class="position-relative">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
+                                                    fill="currentColor"
+                                                    class="bi bi-bookmark-heart-fill primary position-relative"
+                                                    viewBox="0 0 16 16">
                                                     <path
-                                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 
-                                                0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                        d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
                                                 </svg>
+                                                <span
+                                                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{post.liked_by|length}}</span>
                                             </a>
+                                        </div>
+                                        <div style="width: 80%;">
+                                            <h5 class="card-title"> {{post.title}} </h5>
+                                            <div class="d-flex justify-content-around">
+                                                <p class="card-text"> Category : {{post.category}} </p>
+                                                <div>
+                                                    <a href="/delete_post/{{post.id}}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                            fill="currentColor" class="bi bi-trash3-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 
+                                                        0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                        </svg>
+                                                    </a>
 
-                                            <a href="/edit_post/{{post.id}}">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                    fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                                                    <path
-                                                        d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-                                                </svg>
-                                            </a>
+                                                    <a href="/edit_post/{{post.id}}">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                                            fill="currentColor" class="bi bi-pencil-fill"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -110,61 +130,10 @@
                         {% endfor %}
                     </div>
                     {% endif %}
-
-
-
-
-
-
-
-
-                    <!-- {% if posts|length > 0 %}
-                    {% for post in posts %}
-                    <div class="card mb-3 p-2 d-flex post_card" style="border-radius:30px ;">
-                        <div>
-                            <h3><u>{{ post.title }}</u></h3>
-                            <p>Category : {{post.category}}</p>
-                            <p> URL :<span> <a class="nav-link" href="{{post.url}}">{{post.url}}</a></span> </p>
-
-                            {% if post.social_platform == "TikTok" %}
-
-                            <blockquote class="tiktok-embed card-img-top ratio ratio-4x3"
-                                data-video-id="7064314807134063919">
-                                <section>
-                                    <a target="_blank" title="@nike"
-                                        href="https://www.tiktok.com/video/7064314807134063919?lang=en">@nike</a>
-                                </section>
-                            </blockquote>
-
-                            {% else %}
-                            <blockquote class="instagram-media"
-                                data-instgrm-permalink="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}">
-                                <div style="padding:16px"> <a
-                                        href="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}">
-                                </div>
-                            </blockquote>
-
-                            {% endif %}
-
-
-
-
-                            <a href="/delete_post/{{post.id}}"><button> Delete</button></a>
-                            <a href="/edit_post/{{post.id}}"><button> Edit</button> </a>
-                        </div>
-                        </p>
-                    </div>
-                    {% endfor %}
-                    {% else %}
-                    <p> Oops! you have no posts,<a class="nav-link" href="/new/post"> create </a>one today to boost up
-                        your profile!!
-                    </p>
-                    {% endif %} -->
                 </main>
             </div>
         </div>
     </div>
-    <!-- <script src="dashboard.js"></script> -->
 </body>
 
 </html>
