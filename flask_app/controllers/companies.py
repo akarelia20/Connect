@@ -46,10 +46,15 @@ def company_dashbord():
     data = {
         "id"  : session['company_id']
     }
-    posts = post.Post.get_all_posts_withUser()
-    return render_template("company_dashbord.html", logged_in_company = company.Company.get_company_by_id(data), posts= posts)
+    posts = post.Post.get_all_posts_withUser_likedby()
+    print(posts)
+    logged_in_company = company.Company.get_company_by_id(data)
+
+    return render_template("company_dashbord.html", logged_in_company =logged_in_company, posts= posts)
 
 @app.route("/logout")
 def company_logout():
     session.clear()
     return redirect("/")
+
+
