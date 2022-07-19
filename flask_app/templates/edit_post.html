@@ -30,10 +30,8 @@
             </h1>
         </div>
     </header>
-
     <div class="row mt-3 mx-3" style="margin-top:25px ;">
         <div class="col-md-2">
-
             <div class="text-center mt-5">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -47,8 +45,6 @@
                     </li>
                 </ul>
             </div>
-
-
         </div>
         <div class="col-md-9 justify-content-center mt-5">
             <div class="card card-custom pb-4  mt-5 border rounded">
@@ -56,7 +52,6 @@
                     <div class="text-center mb-3 pb-2 mt-3">
                         <h4>Create a Post</h4>
                     </div>
-
                     <form class="mb-0" action="/update_post/{{post.id}}" method="POST">
                         {% with messages = get_flashed_messages(category_filter=['error']) %}
                         {% if messages %}
@@ -65,7 +60,6 @@
                         {% endfor %}
                         {% endif %}
                         {% endwith %}
-
                         <div class="row mb-4">
                             <div class="col">
                                 <div class="form-outline">
@@ -81,7 +75,6 @@
                                         value="{{post.url}}" />
                                 </div>
                             </div>
-
                         </div>
                         <div class="row mb-4">
                             <div class="col">
@@ -119,17 +112,13 @@
                                         <option value="Plants & Nature">Plants & Nature</option>
                                         <option value="Photography">Photography</option>
                                     </select>
-
                                 </div>
                             </div>
-
                         </div>
-
                         <div class="float-end ">
                             <button type="submit" class="btn btn-primary btn-rounded"
                                 style="background-color: #0062CC ;">Post</button>
                         </div>
-
                     </form>
                 </div>
             </div>
