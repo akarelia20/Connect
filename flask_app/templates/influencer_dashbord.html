@@ -71,7 +71,8 @@
                                     <div class="d-flex justify-content-around">
                                         <div>
                                             <a class="position-relative" href="#{{post.id}}" data-toggle="collapse"
-                                                data-target="#{{post.id}}">
+                                                data-target="#{{post.id}}" data-toggle="tooltip" data-placement="top"
+                                                title="Hooray!! see who bookmarked your post!">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
                                                     fill="currentColor"
                                                     class="bi bi-bookmark-heart-fill primary position-relative"
@@ -111,9 +112,10 @@
                                                 </div>
                                             </div>
                                             <div id="{{post.id}}" class="collapse card mt-3 ">
-                                                <h5>This post is bookmarked by:</h5>
+                                                <h5>This post is bookmarked by {{post.liked_by|length}} business:</h5>
                                                 {% for company in post.liked_by %}
-                                                <p>{{ company.name }} - {{company.website}}</p>
+                                                <p>{{ company.name }} - <span>{{company.website}}</span>
+                                                </p>
                                                 {% endfor %}
                                             </div>
                                         </div>
@@ -144,6 +146,7 @@
             </div>
         </div>
     </div>
+
 </body>
 
 </html>

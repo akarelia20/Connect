@@ -1,3 +1,4 @@
+from unicodedata import category
 from flask_app import app
 from flask import render_template, redirect, request, session, flash
 from flask_app.models import company, influencer, post
@@ -40,17 +41,15 @@ def company_login():
     return redirect("/company/dashbord")
 
 @app.route("/company/dashbord")
-def company_dashbord():
+def company_dashbord(category):
     if 'company_id' not in session:
         return redirect("/")
     data = {
         "id"  : session['company_id']
     }
     posts = post.Post.get_all_posts_withUser_likedby()
-    print(posts)
     logged_in_company = company.Company.get_company_by_id(data)
-
-    return render_template("company_dashbord.html", logged_in_company =logged_in_company, posts= posts)
+    return render_template("company_dashbord.html", logged_in_company =logged_in_company, posts= posts, selected_category= category)
 
 @app.route("/logout")
 def company_logout():
