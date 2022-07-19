@@ -69,27 +69,27 @@ class Influencer:
             return False
         return cls(results[0])
 
-    @classmethod
-    def All_posts_from_one_influencer(cls,data):
-        query = "SELECT * FROM influencers LEFT JOIN posts ON influencers.id = posts.influencer_id WHERE influencers.id = %(id)s"
-        results = connectToMySQL(Influencer.db).query_db(query,data)
-        if len(results) < 1:
-            return False
-        else:
-            this_user = cls(results[0])
-            for row in results:
-                post_dict = {
-                    "id" : row['posts.id'],
-                    "title" : row['title'],
-                    "category" : row['category'],
-                    "social_platform": row['social_platform'],
-                    "url" : row['url'],
-                    "created_at" : row['posts.created_at'],
-                    "updated_at" : row['posts.updated_at'],
-                    "influencer_id" : row['influencer_id']
-                }
-                this_post = post.Post(post_dict)
-                this_user.posts.append(this_post)
-            return this_user.posts
+    # @classmethod
+    # def All_posts_from_one_influencer(cls,data):
+    #     query = "SELECT * FROM influencers LEFT JOIN posts ON influencers.id = posts.influencer_id WHERE influencers.id = %(id)s"
+    #     results = connectToMySQL(Influencer.db).query_db(query,data)
+    #     if len(results) < 1:
+    #         return False
+    #     else:
+    #         this_user = cls(results[0])
+    #         for row in results:
+    #             post_dict = {
+    #                 "id" : row['posts.id'],
+    #                 "title" : row['title'],
+    #                 "category" : row['category'],
+    #                 "social_platform": row['social_platform'],
+    #                 "url" : row['url'],
+    #                 "created_at" : row['posts.created_at'],
+    #                 "updated_at" : row['posts.updated_at'],
+    #                 "influencer_id" : row['influencer_id']
+    #             }
+    #             this_post = post.Post(post_dict)
+    #             this_user.posts.append(this_post)
+    #         return this_user.posts
 
     

@@ -86,3 +86,16 @@ def dislike_post(id):
     }
     post.Post.remove_like(data)
     return redirect("/company/dashbord")
+
+@app.route("/<category>")
+def find_category(category):
+    if 'company_id' not in session:
+        return redirect('/')
+    data = {
+        "id"  : session['company_id']
+    }
+    # posts= post.Post.get_all_posts_withUser_likedby()
+    # logged_in_company = company.Company.get_company_by_id(data)
+    return redirect("/company/dashbord", category)
+    
+
