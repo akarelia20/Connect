@@ -1,4 +1,4 @@
 # Connect
-Platform to connect Influencers with the small business owners/admins.
+Platform to connect social-media Influencers with the small business owners/admins.
 
 
