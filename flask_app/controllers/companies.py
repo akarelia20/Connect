@@ -41,7 +41,7 @@ def company_login():
     return redirect("/company/dashbord")
 
 @app.route("/company/dashbord")
-def company_dashbord(category):
+def company_dashbord():
     if 'company_id' not in session:
         return redirect("/")
     data = {
