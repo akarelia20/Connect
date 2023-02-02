@@ -48,9 +48,6 @@
                                 <h4>Welcome to </h4>
                                 <h4>{{ logged_in_company.name }} dashboard!</h4>
                             </li>
-                            <!-- <li class="nav-item">
-                                <a href="/new/post"> <span>Create New Post</span></a>
-                            </li> -->
                             <li class="nav-item">
                                 <a href="/logout"> <span> Logout </span></a>
                             </li>
@@ -60,23 +57,30 @@
                                 Category
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="/">All</a></li>
-                                <li><a href="/Health & Fitness">Health & Fitness</a></li>
-                                <li><a href="/Clothing/Fashion">Clothing/Fashion</a></li>
-                                <li><a href="/Music/Art/Entertainment">Music/Art/Entertainment</a></li>
-                                <li><a href="/Animals/Pets">Animals/Pets</a></li>
-                                <li><a href="/Technology">Technology</a></li>
-                                <li><a href="/Education">Education</a></li>
-                                <li><a href="/Vacation & Travel">Vacation & Travel</a></li>
-                                <li><a href="/post/Plants & Nature">Plants & Nature</a></li>
-                                <li><a href="/post/Photography">Photography</a></li>
-                            </ul>
+                                <li><a href="/company/dashbord">All</a></li>
+                                <li><a href="/company/dashbord/health">Health &Fitness</a></li>
+                                <li><a href="/company/dashbord/Food">Food</a></li>
+                                <li><a href="/company/dashbord/clothing">Clothing/Fashion</a></li>
+                                <li><a href="/company/dashbord/music">Music/Art/Entertainment</a></li>
+                                <li><a href="/company/dashbord/animals">Animals/Pets</a></li>
+                                <li><a href="/company/dashbord/Kids">Kids</a></li>
+                                <li><a href="/company/dashbord/Technology">Technology</a></li>
+                                <li><a href="/company/dashbord/Education">Education</a></li>
+                                <li><a href="/company/dashbord/vacation">Vacation & Travel</a></li>
+                                <li><a href="/company/dashbord/nature">Plants & Nature</a></li>
+                                <li><a href="/company/dashbord/Photography">Photography</a></li>
+                                </select>
                         </div>
 
                     </div>
 
                 </div>
+                {% block all_post %}
+                {% endblock %}
 
+                {% block content %}
+                {% endblock %}
+                <!--
                 <main class="overflow-auto col p-3">
                     {% if posts|length > 0 %}
                     <div class="row row-cols-1 row-cols-md-3 g-4 p-4 m-4">
@@ -132,7 +136,8 @@
                         <p> Oops! you have no posts from influencers yet! check back again... </p>
                         {% endif %}
                     </div>
-                </main>
+                </main> -->
+
             </div>
         </div>
     </div>
