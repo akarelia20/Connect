@@ -20,12 +20,20 @@ def create_post():
     if not post.Post.validate_post(request.form):
         return redirect("/new/post")
     else:
+        if request.form['social_platform'] == 'TikTok':
+            post_id = re.search(r'(?<=video\/)\d+',
+                                request.form['url']).group(0)
+        else:
+            post_id = None
+        keywords = post.Post.keyword(request.form['url'])
         data = {
             "title": request.form['title'],
             "category": request.form['category'],
             "social_platform": request.form['social_platform'],
             "url": request.form['url'],
-            "influencer_id": session['influencer_id']
+            "tiktok_post_id": post_id,
+            "influencer_id": session['influencer_id'],
+            "keywords": keywords
         }
         post.Post.save(data)
         return redirect("/influencer/dashbord")

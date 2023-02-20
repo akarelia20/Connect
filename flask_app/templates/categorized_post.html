@@ -34,8 +34,7 @@
                     </div>
                 </div>
                 {% if post.social_platform == "TikTok" %}
-                <blockquote class="tiktok-embed card-img-top"
-                    data-video-id="{{ post.url| replace ('https://www.tiktok.com/video/', '')}}">
+                <blockquote class="tiktok-embed card-img-top" data-video-id="{{ post.tiktok_post_id}}">
                     <section>
                         <a target="_blank" href="{{post.url}}"></a>
                     </section>

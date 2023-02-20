@@ -5,6 +5,13 @@ from flask import flash
 import re
 
 
+import os
+import openai
+from env import API_KEY
+
+openai.api_key = API_KEY
+
+
 URL_REGEX = re.compile(
     r'^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?')
 
@@ -21,7 +28,8 @@ class Post:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.influencer_id = data['influencer_id']
-        self.tiktok_post_id = 0
+        self.tiktok_post_id = data['tiktok_post_id']
+        self.keywords = data['keywords']
         self.poster = influencer.Influencer.get_influencer_by_id(
             {"id": data['influencer_id']})
         self.liked_by = []
@@ -45,9 +53,30 @@ class Post:
         return is_valid
 
     @classmethod
+    def keyword(cls, data):
+        url = data
+        print(url)
+        response = openai.Completion.create(
+            model="text-davinci-003",
+            prompt=f"Given a social media post URL, generate keywords that are relevant to the post based on its content, hashtags and description and return them in a commma seprated string without any special char. The keywords should accurately reflect the main theme or topic of the post and be useful for improving its searchability, {url}",
+            temperature=0.7,
+            max_tokens=256,
+            top_p=1,
+            frequency_penalty=0,
+            presence_penalty=0
+        )
+        print(response.choices[0].text)
+        return str(response.choices[0].text)
+
+    @classmethod
     def save(cls, data):
-        query = "INSERT INTO posts (title, category, social_platform, url, influencer_id, tiktok_post_id) VALUES (%(title)s, %(category)s, %(social_platform)s, %(url)s, %(influencer_id)s, 0);"
+        query = "INSERT INTO posts (title, category, social_platform, url, influencer_id, tiktok_post_id, keywords) VALUES (%(title)s, %(category)s, %(social_platform)s, %(url)s, %(influencer_id)s, %(tiktok_post_id)s, %(keywords)s);"
         return MySQLConnection(cls.db).query_db(query, data)
+
+    # @classmethod
+    # def save(cls, data):
+    #     query = "INSERT INTO posts (title, category, social_platform, url, influencer_id, tiktok_post_id) VALUES (%(title)s, %(category)s, %(social_platform)s, %(url)s, %(influencer_id)s, 0);"
+    #     return MySQLConnection(cls.db).query_db(query, data)
 
     @classmethod
     def update(cls, data):

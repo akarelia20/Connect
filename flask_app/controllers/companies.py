@@ -52,11 +52,6 @@ def company_dashbord():
         "id": session['company_id']
     }
     posts = post.Post.get_all_posts_withUser_likedby()
-    for single_post in posts:
-        if single_post.social_platform == 'TikTok':
-            post_id = re.search(r'(?<=video\/)\d+', single_post.url).group(0)
-            single_post.tiktok_post_id = post_id
-            print(single_post.tiktok_post_id)
     logged_in_company = company.Company.get_company_by_id(data)
     return render_template("all_posts.html", logged_in_company=logged_in_company, posts=posts, selected_category=category)
 

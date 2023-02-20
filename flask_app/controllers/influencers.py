@@ -57,10 +57,10 @@ def dashbord():
         "id": session['influencer_id']
     }
     posts = post.Post.all_posts_with_likedby_for_oneUser(data)
-    for single_post in posts:
-        if single_post.social_platform == 'TikTok':
-            post_id = re.search(r'(?<=video\/)\d+', single_post.url).group(0)
-            single_post.tiktok_post_id = post_id
+    # for single_post in posts:
+    #     if single_post.social_platform == 'TikTok':
+    #         post_id = re.search(r'(?<=video\/)\d+', single_post.url).group(0)
+    #         single_post.tiktok_post_id = post_id
     return render_template("influencer_dashbord.html", logged_in_user=influencer.Influencer.get_influencer_by_id(data), posts=posts)
 
 
