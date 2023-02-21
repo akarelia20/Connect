@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session, flash, jsonify
 from flask_app.models import company, influencer, post
 from flask_bcrypt import Bcrypt
 import re

@@ -20,11 +20,16 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
+
+
+
+
+
 </head>
 
 <body class="vh-100 bg-image text-secondary background">
-    <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow">
-        <div class="margin text-center">
+    <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow d-flex">
+        <div class="margin text-center w-75">
             <i class="bi bi-chat-square-heart"></i>
             <h1 class="mb-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor"
@@ -36,6 +41,15 @@
                 iConnect
             </h1>
         </div>
+        <form class="form-inline m-4">
+            <input id="search_box" name="search_input" class="form-control mr-sm-2" type="search" placeholder="Search"
+                aria-label="Search">
+            <svg type="submit" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-search search_btn" viewBox="0 0 16 16">
+                <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+        </form>
     </header>
 
     <div class="row d-flex justify-content-center align-items-center" style="height:90vh">
@@ -75,145 +89,38 @@
                     </div>
 
                 </div>
+
                 {% block all_post %}
                 {% endblock %}
 
                 {% block content %}
                 {% endblock %}
-                <!--
-                <main class="overflow-auto col p-3">
-                    {% if posts|length > 0 %}
-                    <div class="row row-cols-1 row-cols-md-3 g-4 p-4 m-4">
-
-                        {% for post in posts %}
-
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-body d-flex justify-content-around">
-                                    {% if session.company_id in post.liked_by|map(attribute = 'id') %}
-                                    <a href="/post_dislike/{{post.id}}" data-toggle="tooltip" data-placement="top"
-                                        title="remove bookmark!">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                            fill="currentColor" class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
-                                        </svg> </a>
-                                    {% else %}
-                                    <a href="/post_like/{{post.id}}" data-toggle="tooltip" data-placement="top"
-                                        title="Bookmark if interested!">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"
-                                            fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
-                                            <path
-                                                d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                                        </svg></a>
-                                    {% endif %}
-                                    <div style="width: 80%;">
-                                        <h5 class="card-title"> {{post.title}} </h5>
-                                        <p class="card-text"> Category : {{post.category}} </p>
-                                        <p> Posted By: {{post.poster.first_name}} {{post.poster.last_name}}</p>
-                                    </div>
-                                </div>
-                                {% if post.social_platform == "TikTok" %}
-                                <blockquote class="tiktok-embed card-img-top"
-                                    data-video-id="{{ post.url| replace ('https://www.tiktok.com/video/', '')}}">
-                                    <section>
-                                        <a target="_blank" href="{{post.url}}"></a>
-                                    </section>
-                                </blockquote>
-                                {% else %}
-                                <blockquote class="instagram-media"
-                                    data-instgrm-permalink="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}">
-                                    <div style="padding:16px">
-                                        <a
-                                            href="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}"></a>
-                                    </div>
-                                </blockquote>
-                                {% endif %}
-                            </div>
-                        </div>
-                        {% endfor %}
-                        {% else %}
-                        <p> Oops! you have no posts from influencers yet! check back again... </p>
-                        {% endif %}
-                    </div>
-                </main> -->
-
             </div>
         </div>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-    <!-- <div class="text-center m-3 p-5">
-        <div CLASS="d-flex align-items-center">
-            <h3 style="width:90%;"> Welcome to {{ logged_in_company.name }} dashboard! </h3>
-            <a href="/logout">
-                <button class="float-right btn btn-secondary">
-                    Logout
-                </button>
-            </a>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% if posts|length > 0 %}
-            {% for post in posts %}
-            <div class="col">
-                <div class="card">
-                    <div class="card-body d-flex justify-content-around">
-                        {% if session.company_id in post.liked_by|map(attribute = 'id') %}
-                        <a href="/post_dislike/{{post.id}}">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                class="bi bi-bookmark-heart-fill" viewBox="0 0 16 16">
-                                <path
-                                    d="M2 15.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v13.5zM8 4.41c1.387-1.425 4.854 1.07 0 4.277C3.146 5.48 6.613 2.986 8 4.412z" />
-                            </svg> </a>
-                        {% else %}
-                        <a href="/post_like/{{post.id}}" class="sticky-top">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                                class="bi bi-bookmark" viewBox="0 0 16 16">
-                                <path
-                                    d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z" />
-                            </svg></a>
-                        {% endif %}
-                        <div style="width: 80%;">
-                            <h5 class="card-title"> {{post.title}} </h5>
-                            <p class="card-text"> Category : {{post.category}} </p>
-                            <p> Posted By: {{post.poster.first_name}} {{post.poster.last_name}}</p>
-                        </div>
-                    </div>
-                    {% if post.social_platform == "TikTok" %}
-                    <blockquote class="tiktok-embed card-img-top"
-                        data-video-id="{{ post.url| replace ('https://www.tiktok.com/video/', '')}}">
-                        <section>
-                            <a target="_blank" href="{{post.url}}"></a>
-                        </section>
-                    </blockquote>
-                    {% else %}
-                    <blockquote class="instagram-media"
-                        data-instgrm-permalink="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}">
-                        <div style="padding:16px">
-                            <a
-                                href="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}"></a>
-                        </div>
-                    </blockquote>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-            {% else %}
-            <p> Oops! you have no posts from influencers yet! check back again... </p>
-            {% endif %}
-        </div>
-    </div> -->
-
+    <script>
+        $(function () {
+            $("form").on("submit", function () {
+                var search_word = $("#search_box").val();
+                var dataString = 'search_word=' + search_word;
+                if (search_word == "") {
+                } else {
+                    $.ajax({
+                        url: "/update_display",
+                        type: "POST",
+                        data: dataString,
+                        datatype: "json",
+                        success: function (data) {
+                            console.log("@@@@@@@@@@@", data);
+                            $(display_post).replaceWith(data);
+                        },
+                    })
+                }
+                return false;
+            })
+        })
+    </script>
 
 </body>
 
