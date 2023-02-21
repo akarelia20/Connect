@@ -1,5 +1,5 @@
 from flask_app import app
-from flask import render_template, redirect, request, session, flash
+from flask import render_template, redirect, request, session, flash, jsonify
 from flask_app.models import company, influencer, post
 from flask_bcrypt import Bcrypt
 import re
@@ -56,7 +56,6 @@ def company_dashbord():
     return render_template("all_posts.html", logged_in_company=logged_in_company, posts=posts, selected_category=category)
 
 
-# **********************
 @app.route("/company/dashbord/<string:category>")
 def category(category):
     if 'company_id' not in session:
@@ -81,7 +80,30 @@ def category(category):
     logged_in_company = company.Company.get_company_by_id(data)
     return render_template("categorized_post.html", logged_in_company=logged_in_company, posts=posts, category=category)
 
-# *****************************
+
+@app.route("/update_display", methods=['POST'])
+def update_display():
+    search_keyword = request.form['search_word'].lower().strip()
+    print(search_keyword, "*****************")
+    if 'company_id' not in session:
+        return redirect("/")
+    data = {
+        "id": session['company_id']
+    }
+    posts_data = post.Post.get_all_posts_withUser_likedby()
+    result = []
+    for one_post in posts_data:
+        print(one_post.keywords)
+        keywords = one_post.keywords.lower()
+        print("keywords string:", keywords)
+        keyword_array = [x.strip() for x in keywords.split(',')]
+        print(keyword_array)
+        for x in keyword_array:
+            if (x == search_keyword or search_keyword in x) and one_post not in result:
+                result.append(one_post)
+    logged_in_company = company.Company.get_company_by_id(data)
+    print(result)
+    return jsonify('', render_template("searched_post.html", logged_in_company=logged_in_company, posts=result))
 
 
 @app.route("/logout")

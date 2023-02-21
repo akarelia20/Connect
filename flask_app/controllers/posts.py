@@ -33,7 +33,7 @@ def create_post():
             "url": request.form['url'],
             "tiktok_post_id": post_id,
             "influencer_id": session['influencer_id'],
-            "keywords": keywords
+            "keywords": keywords + ","+request.form['social_platform']
         }
         post.Post.save(data)
         return redirect("/influencer/dashbord")
