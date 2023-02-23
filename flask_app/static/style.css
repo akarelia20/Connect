@@ -1,13 +1,13 @@
 .margin {
-  margin: auto;
+    margin: auto;
 }
 
 body {
-  font-size: 0.875rem;
+    font-size: 0.85rem;
 }
 
-.background{
-    background-color:whitesmoke;
+.background {
+    background-color: whitesmoke;
 }
 
 
@@ -17,9 +17,9 @@ header {
 }
 
 .feather {
-  width: 16px;
-  height: 16px;
-  vertical-align: text-bottom;
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
 }
 
 /*
@@ -27,18 +27,20 @@ header {
    */
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  /* rtl:raw:
+    position: fixed;
+    top: 0;
+    /* rtl:raw:
     right: 0;
     */
-  bottom: 0;
-  /* rtl:remove */
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
- 
+    bottom: 0;
+    /* rtl:remove */
+    left: 0;
+    z-index: 100;
+    /* Behind the navbar */
+    padding: 48px 0 0;
+    /* Height of navbar */
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+
 }
 
 a {
@@ -46,13 +48,14 @@ a {
 }
 
 .sidebar-sticky {
-  position: relative;
-  top: 0;
-  height: calc(100vh - 48px);
-  padding-top: 0.5rem;
-  overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  border-right: dotted 2px gray;
+    position: relative;
+    top: 0;
+    height: calc(100vh - 48px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+    border-right: dotted 2px gray;
 }
 
 
@@ -61,50 +64,49 @@ a {
    */
 
 .navbar-brand {
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0.25);
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0.25);
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
 }
 
 .navbar .navbar-toggler {
-  top: 0.25rem;
-  right: 1rem;
-  color: black;
+    top: 0.25rem;
+    right: 1rem;
+    color: black;
 }
 
 .navbar .form-control {
-  padding: 0.75rem 1rem;
-  border-width: 0;
-  border-radius: 0;
+    padding: 0.75rem 1rem;
+    border-width: 0;
+    border-radius: 0;
 }
 
 .form-control-dark {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 .form-control-dark:focus {
-  border-color: transparent;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+    border-color: transparent;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
 }
 
 nav {
-    width:20px;
+    width: 20px;
 }
 
 main {
-  height: 90vh;
-  margin: 0px auto;
-  text-align: center;
-  overflow-y: scroll;
-  width:80%;
-} 
+    height: 90vh;
+    margin: 0px;
+    text-align: center;
+    overflow-y: scroll;
+    width: 80%;
+}
 
 
 svg {
     margin: 5px;
 }
-
