@@ -38,6 +38,15 @@
                         <a target="_blank" href="{{post.url}}"></a>
                     </section>
                 </blockquote>
+
+                {% elif post.social_platform == "Youtube" %}
+                {% set url = 'https://www.youtube.com/watch?v=yv0HKH7pOLM&ab_channel=JoelHansen' %}
+                {% set base_url = url.split('&ab_')[0] %}
+                {% set embed_url = base_url.replace('watch?v=', 'embed/') %}
+                <iframe height="650" src="{{ embed_url }}" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                </iframe>
+
                 {% else %}
                 <blockquote class="instagram-media"
                     data-instgrm-permalink="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}">
