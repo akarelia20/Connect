@@ -65,12 +65,16 @@ def category(category):
     }
     if category == "health":
         category = "Health & Fitness"
-    elif category == "clothing":
-        category = "Clothing/Fashion"
+    elif category == "beauty":
+        category = "Beauty & Makeup"
+    elif category == "Lifestyle":
+        category = "Home & Lifestyle"
+    elif category == "tech":
+        category = "Gaming & Technology"
     elif category == "music":
-        category = "Music/Art/Entertainment"
+        category = "Music, Art & Entertainment"
     elif category == "animals":
-        category = "Animals/Pets"
+        category = "Animals & Pets"
     elif category == "vacation":
         category = "Vacation & Travel"
     elif category == "nature":

@@ -40,7 +40,7 @@
                 </blockquote>
 
                 {% elif post.social_platform == "Youtube" %}
-                {% set url = 'https://www.youtube.com/watch?v=yv0HKH7pOLM&ab_channel=JoelHansen' %}
+                {% set url = post.url %}
                 {% set base_url = url.split('&ab_')[0] %}
                 {% set embed_url = base_url.replace('watch?v=', 'embed/') %}
                 <iframe height="650" src="{{ embed_url }}" title="YouTube video player" frameborder="0"
