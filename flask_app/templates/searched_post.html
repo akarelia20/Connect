@@ -1,8 +1,13 @@
-<script async src="https://www.tiktok.com/embed.js"></script>
-<script async src="https://www.instagram.com/embed.js"></script>
+<!-- <script async src="https://www.instagram.com/embed.js"></script>
+<script async src="https://www.tiktok.com/embed.js"></script> -->
+
+
 <main id="display_post" class="overflow-auto col p-3">
+    <script async src="https://www.instagram.com/embed.js"></script>
+    <script async src="https://www.tiktok.com/embed.js"></script>
+
     {% if posts|length > 0 %}
-    <div class="row row-cols-1 row-cols-md-3 g-4 p-4 m-4">
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-4">
 
         {% for post in posts %}
 
@@ -29,25 +34,11 @@
                     <div style="width: 80%;">
                         <h5 class="card-title"> {{post.title}} </h5>
                         <p class="card-text"> Category : {{post.category}} </p>
-                        <p> Posted By: {{post.poster.first_name}} {{post.poster.last_name}}</p>
+                        <p> Posted By: {{post.poster.first_name}} </p>
                     </div>
                 </div>
-                {% if post.social_platform == "TikTok" %}
-                <blockquote class="tiktok-embed card-img-top" data-video-id="{{ post.tiktok_post_id }}">
-                    <section>
-                        <a target="_blank" href="{{post.url}}"></a>
-                    </section>
-                </blockquote>
 
-                {% elif post.social_platform == "Youtube" %}
-                {% set url = post.url %}
-                {% set base_url = url.split('&ab_')[0] %}
-                {% set embed_url = base_url.replace('watch?v=', 'embed/') %}
-                <iframe height="650" src="{{ embed_url }}" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
-                </iframe>
-
-                {% else %}
+                {% if post.social_platform == "Instagram" %}
                 <blockquote class="instagram-media"
                     data-instgrm-permalink="{{ post.url|replace('?utm_source=ig_web_copy_link', '?utm_source=ig_embed&amp;utm_campaign=loading')}}">
                     <div style="padding:16px">
@@ -56,6 +47,25 @@
                     </div>
                 </blockquote>
                 {% endif %}
+
+                {% if post.social_platform == "TikTok" %}
+                <blockquote class="tiktok-embed card-img-top" data-video-id="{{ post.tiktok_post_id }}">
+                    <section>
+                        <a target="_blank" href="{{post.url}}"></a>
+                    </section>
+                </blockquote>
+                {% endif %}
+
+
+                {% if post.social_platform == "Youtube" %}
+                {% set url = post.url %}
+                {% set base_url = url.split('&ab_')[0] %}
+                {% set embed_url = base_url.replace('watch?v=', 'embed/') %}
+                <iframe height="650" src="{{ embed_url }}" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share">
+                </iframe>
+
+                {% endif %}
             </div>
         </div>
         {% endfor %}
@@ -63,5 +73,6 @@
         <p> Oops! you have no posts from influencers yet! check back again... </p>
         {% endif %}
     </div>
-
+    <!-- <script async src="https://www.instagram.com/embed.js"></script>
+    <script async src="https://www.tiktok.com/embed.js"></script> -->
 </main>

@@ -99,7 +99,6 @@ def update_display():
     for one_post in posts_data:
         print(one_post.keywords)
         keywords = one_post.keywords.lower()
-        print("keywords string:", keywords)
         keyword_array = [x.strip() for x in keywords.split(',')]
         print(keyword_array)
         for x in keyword_array:

@@ -55,18 +55,47 @@ class Post:
     @classmethod
     def keyword(cls, data):
         url = data
-        print(url)
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=f"Given a social media post URL, generate keywords that are relevant to the post based on its content, hashtags and description and return them in a commma seprated string without any special char. The keywords should accurately reflect the main theme or topic of the post and be useful for improving its searchability, {url}",
-            temperature=0.7,
-            max_tokens=256,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0
-        )
-        print(response.choices[0].text)
-        return str(response.choices[0].text)
+        if "youtube.com/watch" in url:
+            # video_id = url.split("v=")[1].split("&")[0]
+            # video_url = f"https://www.youtube.com/watch?v={video_id}"
+            response = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=f"Given a youtube URL, generate keywords that are relevant to its content,and return them in a commma seprated string without any special char. The keywords should accurately reflect the main topic of the video and be useful for improving its searchability:\n{url}\nKeywords:",
+                temperature=0.5,
+                max_tokens=100,
+                n=1,
+                stop=None,
+                timeout=10,
+            )
+        else:
+            response = openai.Completion.create(
+                engine="text-davinci-003",
+                prompt=f"Given a social media post URL, generate keywords that are relevant to the post based on its content, hashtags and description and return them in a commma seprated string without any special char. The keywords should accurately reflect the main theme or topic of the post and be useful for improving its searchability:\n{url}\nKeywords:",
+                temperature=0.5,
+                max_tokens=100,
+                n=1,
+                stop=None,
+                timeout=10,
+            )
+
+        keywords_list = response.choices[0].text
+        return keywords_list
+
+    # @classmethod
+    # def keyword(cls, data):
+    #     url = data
+    #     print(url)
+    #     response = openai.Completion.create(
+    #         model="text-davinci-003",
+    #         prompt=f"Given a social media post URL, generate keywords that are relevant to the post based on its content, hashtags and description and return them in a commma seprated string without any special char. The keywords should accurately reflect the main theme or topic of the post and be useful for improving its searchability, {url}",
+    #         temperature=0.7,
+    #         max_tokens=256,
+    #         top_p=1,
+    #         frequency_penalty=0,
+    #         presence_penalty=0
+    #     )
+    #     print(response.choices[0].text)
+    #     return str(response.choices[0].text)
 
     @classmethod
     def save(cls, data):

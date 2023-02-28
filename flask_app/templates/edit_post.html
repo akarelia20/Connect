@@ -50,7 +50,7 @@
             <div class="card card-custom pb-4  mt-5 border rounded">
                 <div class="card-body m-5 mx-5">
                     <div class="text-center mb-3 pb-2 mt-3">
-                        <h4>Create a Post</h4>
+                        <h4>Modify Post</h4>
                     </div>
                     <form class="mb-0" action="/update_post/{{post.id}}" method="POST">
                         {% with messages = get_flashed_messages(category_filter=['error']) %}
@@ -124,7 +124,7 @@
                         </div>
                         <div class="float-end ">
                             <button type="submit" class="btn btn-primary btn-rounded"
-                                style="background-color: #0062CC ;">Post</button>
+                                style="background-color: #0062CC ;">Update</button>
                         </div>
                     </form>
                 </div>
